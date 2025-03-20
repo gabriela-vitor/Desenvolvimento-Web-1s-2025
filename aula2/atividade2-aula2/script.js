@@ -3,6 +3,8 @@ let contador = 0;
 
 function incrementar(){
     contador++;
+    //getelementbyid obtem o html a partir do ID
+    //innetext retorna o conteudo textual
     document.getElementById('counterValue').innerText = contador;
     
 }
@@ -16,14 +18,17 @@ function decrementar(){
     }
 }
 
+//onclick executa uma funcao qnd e clicado
 document.getElementById('botaoIncrementar').onclick = incrementar;
 document.getElementById('botaoDecrementar').onclick = decrementar;
 
 
+//event - evento do teclado
 function adicionarTexto(event){
     //verifica se apertou o enter
     if(event.key === 'Enter'){
         const texto = document.getElementById('campoTexto').value;
+        //impede msg vazias
         if(texto.trim() !== ''){
             const paragrafo = document.createElement('p');
             paragrafo.textContent = texto;
@@ -39,7 +44,9 @@ document.getElementById('campoTexto').addEventListener('keydown', adicionarTexto
 
 function contarCaracteres(){
     const texto = document.getElementById('inputTexto').value;
+    //remove todos os espacos
     const textoSemEspaco = texto.replace(/\s+/g, '');
+    //mede o comprimento do texto sem os espaços
     const quantidadeCaracteres = textoSemEspaco.length;
     document.getElementById('contadorCaracteres').innerText = quantidadeCaracteres + ' caracteres';
 }
