@@ -31,6 +31,11 @@ function atualizarValor(){
 }
 
 function calcularValorAbastecimento(precoCombustivel, litros){
+    if(litros <= 0 || isNaN(litros)){
+        document.getElementById("resultado").textContent = "Insira um valor positivo";
+        return;
+    }
+
     const valorTotal = precoCombustivel * litros;
     document.getElementById("resultado").textContent = `Valor a pagar: ${formatarMoeda(valorTotal)}`;
 }
@@ -41,3 +46,12 @@ function formatarMoeda(valor){
 
 document.getElementById("litros").addEventListener("input", atualizarValor);
 document.getElementById("combustivel").addEventListener("change", atualizarValor);
+
+document.getElementById("litros").addEventListener("keydown", function(event){
+    if(event.key =="Enter"){
+        event.preventDefault();
+        event.atualizarValor();
+        
+    }
+})
+
