@@ -1,0 +1,43 @@
+//funcoes
+
+const precoGasolina = 5.79;
+const precoEtanol = 4.29;
+const precoDiesel = 6.79;
+
+//funcao principal
+
+function atualizarValor(){
+    const tipo = document.getElementById("combustivel").value;
+    const litros = parseFloat(document.getElementById("litros").value);
+    let precoPorLitro;
+
+    //switch case
+    switch (tipo){
+        case "gasolina":
+            precoPorLitro = precoGasolina;
+            break;
+        case "etanol":
+            precoPorLitro = precoEtanol;
+            break;
+        case "diesel":
+            precoPorLitro = precoDiesel;
+            break;
+        default:
+            document.getElementById("resultado").textContent = "Tipo Invalido";
+            return;
+    }
+
+    calcularValorAbastecimento(precoPorLitro, litros);
+}
+
+function calcularValorAbastecimento(precoCombustivel, litros){
+    const valorTotal = precoCombustivel * litros;
+    document.getElementById("resultado").textContent = `Valor a pagar: ${formatarMoeda(valorTotal)}`;
+}
+
+function formatarMoeda(valor){
+    return "R$" + valor.toLocaleString("pt-BR",{mininumFractionDigits: 2, maxinumFractionDigits: 2});
+}
+
+document.getElementById("litros").addEventListener("input", atualizarValor);
+document.getElementById("combustivel").addEventListener("change", atualizarValor);
